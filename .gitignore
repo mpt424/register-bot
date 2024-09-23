@@ -1,0 +1,15 @@
+.idea
+.eggs
+.cache
+.coverage
+cov.xml
+junit.xml
+*.py[co]
+*.egg-info
+build
+dist
+.pytest_cache/
+packages
+.vscode
+.DS_Store
+out

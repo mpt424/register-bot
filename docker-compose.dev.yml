@@ -1,0 +1,11 @@
+services:
+  svc:
+    environment:
+      CYBERINT_LOG_PRETTY_PRINT: 1
+      CYBERINT_LOG_LEVEL: DEBUG
+
+  kafka:
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092

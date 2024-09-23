@@ -1,0 +1,13 @@
+{
+    "_copy_without_render": [
+        "helm/templates/_helpers.tpl"
+    ],
+    "_output_dir": "/Users/moshetenenbaum/Documents/MyProjects",
+    "_template": "git+ssh://git@bitbucket.dev-services.cyberint.io:7999/tem/service-template.git",
+    "domain_label": "ti",
+    "is_async": "Yes",
+    "kafka_service": "False",
+    "module_name": "register_bot",
+    "project_slug": "register-bot",
+    "team_label": "justice-league"
+}

@@ -1,0 +1,74 @@
+[tool.poetry]
+name = "cyberint-register-bot"
+version = "0.0.0"
+description = ""
+packages = [
+    { include = "cyberint/services/register_bot" }
+]
+authors = []
+
+[tool.poetry.dependencies]
+python = "^3.11"
+cyberint-logging = "^1"
+cyberint-python-utils = "^1"
+cyberint-identity-utils = "^4"
+cyberint-kafka-utils = "^5"
+
+[tool.poetry.dev-dependencies]
+pre-commit = "^3"
+pytest-cov = "^4.0.0"
+pytest = "^7.0.0"
+pytest-env = "<1"
+pytest-asyncio = "<1"
+
+[[tool.poetry.source]]
+name = "cyberint-pypi"
+url = "https://nexus.dev-services.cyberint.io/repository/pypi-group/simple/"
+default = true
+
+[[tool.poetry.source]]
+name = "cyberint"
+url = "https://nexus.dev-services.cyberint.io/repository/pypi-private/"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+line_length = 120
+known_first_party = ["cyberint.services.register_bot", "tests"]
+combine_as_imports = true
+include_trailing_comma = true
+
+
+[tool.black]
+line-length = 120
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+    tests/resources
+)/
+'''
+
+[tool.coverage.run]
+include = ["cyberint/services/register_bot/*"]
+
+[tool.coverage.report]
+include = ["cyberint/services/register_bot/*"]
+
+[tool.pytest.ini_options]
+junit_family = "xunit2"
+asyncio_mode = "auto"
+filterwarnings = [
+    "error"
+]
+env = [
+    "D:CYBERINT_KAFKA_BOOTSTRAP_SERVERS=localhost:9092",
+]
+
+[tool.ruff]
+line-length = 120
+select = ["E", "F", "B", "C", "W", "B" , "B9", "UP", "ISC", "PLC", "PLE", "PLR", "PLW"]
+ignore = []
+fix = true
