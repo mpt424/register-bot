@@ -1,2 +1,2 @@
 # Telegram Register Bot
-Register and manage players and team
+Register, manage and create players and teams on telegram chats
