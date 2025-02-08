@@ -1,4 +1,4 @@
-from cyberint.services.register_bot import work
+from src import work
 
 
 def test_smoke():

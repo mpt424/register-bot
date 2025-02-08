@@ -12,40 +12,9 @@ services:
     entrypoint: make
     command: test
     working_dir: /app
-    depends_on:
-      kafka:
-        condition: service_healthy
     volumes:
       - .:/app
       - ${HOME}/.cache.tmp/:/tmp/.cache:rw
     environment:
       XDG_CACHE_HOME: /tmp/.cache/
       PYTEST_ADDOPTS: "-vv --junitxml=junit.xml --cov --cov-report xml:cov.xml"
-      CYBERINT_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
-
-
-  zookeeper:
-    image: confluentinc/cp-zookeeper:latest
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
-
-  kafka:
-    image: confluentinc/cp-kafka:latest
-    depends_on:
-      - zookeeper
-    healthcheck:
-      test: [ "CMD", "kafka-topics", "--list", "--bootstrap-server", "kafka:9092" ]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
-
